@@ -7,18 +7,20 @@ import 'package:research_package/research_package.dart';
 RPOrderedTask surveyTask = RPOrderedTask(
   identifier: 'surveyTaskID',
   steps: [
+    q7,
+    // q8,
+    // q9,
     q1,
     q2,
     q3,
     q4,
     q5,
     q6,
-    pairedAssociatesLearningStep,
-    rapidVisualInfoProcessingStep,
     flanker,
+    visualArrayChange,
+    corsiBlockTapping,
     completionStep,
   ],
-  closeAfterFinished: true
 );
 
 RPCompletionStep completionStep =
@@ -28,6 +30,42 @@ RPCompletionStep completionStep =
 RPActivityStep tappingStep = RPTappingActivity(
   identifier: 'Tapping step ID',
 );
+
+RPFormStep q7 = RPFormStep(
+    identifier: "EMA Question 7",
+    title: "7. Since the past 4 hours, have you experienced any events with regards to routine?",
+    steps: [q7Neg,q7Pos],
+);
+
+RPQuestionStep q7Neg = RPQuestionStep(identifier: "EMA Question 7 negative impact", title: "How much of a negative impact did this routine event or situation have on you? ", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat7Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
+
+RPQuestionStep q7Pos = RPQuestionStep(identifier: "EMA Question 7 negative impact", title: "How much of a positive impact did this routine event or situation have on you? ", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat7Pos = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
+
+RPFormStep q8 = RPFormStep(
+    identifier: "EMA Question 8",
+    title: "Since the past 4 hours, have you experienced any events with regards to friends, loved ones, or others?",
+    steps: [q8Neg,q8Pos]
+);
+
+RPQuestionStep q8Neg = RPQuestionStep(identifier: "EMA Question 8 negative impact", title: " How much of a negative impact did this event or situation with others have on you?", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat8Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
+
+RPQuestionStep q8Pos = RPQuestionStep(identifier: "EMA Question 8 negative impact", title: "How much of a positive impact did this event or situation with others have on you?", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat8Pos = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
+
+RPFormStep q9 = RPFormStep(
+    identifier: "EMA Question 9",
+    title: "9. Since the past 4 hours, has anything happened to you with regards to money or health?",
+    steps: [q9Neg,q9Pos]
+);
+
+RPQuestionStep q9Neg = RPQuestionStep(identifier: "EMA Question 9 negative impact", title: "How much of a negative impact did this event or situation with money or health have on you?", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat9Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
+
+RPQuestionStep q9Pos = RPQuestionStep(identifier: "EMA Question 9 negative impact", title: "How much of a positive impact did this event or situation with money or health have on you?", answerFormat: answerFormat7Neg);
+RPAnswerFormat answerFormat9Pos = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
 
 RPQuestionStep q1 = RPQuestionStep(identifier: "EMA Question 1", title: "1. What were you doing right before the survey (Check all that apply)?", answerFormat: answerFormat1);
 RPAnswerFormat answerFormat1 = RPChoiceAnswerFormat(answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: [RPChoice(text: "Hanging out", value: 0),RPChoice(text: "TV/Movie", value: 1),RPChoice(text: "socializing", value: 2),RPChoice(text: "Talking on the phone", value: 3),RPChoice(text: "Texting", value: 4),RPChoice(text: "Gaming", value: 5),RPChoice(text: "Computer/App", value: 6),RPChoice(text: "Work/School", value: 7),RPChoice(text: "Reading", value: 8),RPChoice(text: "Housework/chores", value: 9),RPChoice(text: "Eat/drink", value: 10),RPChoice(text: "Child care", value: 11),RPChoice(text: "Alcohol use", value: 12),RPChoice(text: "Marijuana use", value: 13),RPChoice(text: "Physical activity/sports", value: 14),RPChoice(text: "Transit/Driving", value: 15),RPChoice(text: "Walking", value: 16),RPChoice(text: "Relaxing", value: 17),RPChoice(text: "Other", value: 18)]);
@@ -76,6 +114,8 @@ RPActivityStep pairedAssociatesLearningStep =
 
 RPActivityStep corsiBlockTapping = RPCorsiBlockTappingActivity(
   identifier: 'Corsi Block Tapping step ID',
+  includeResults: true,
+  includeInstructions: true,
 );
 
 RPActivityStep stroopEffect = RPStroopEffectActivity(
@@ -84,7 +124,7 @@ RPActivityStep stroopEffect = RPStroopEffectActivity(
 
 RPActivityStep flanker = RPFlankerActivity(
     identifier: 'Flanker step ID',
-    lengthOfTest: 45 /* 300 */,
+    lengthOfTest: 90 /* 300 */,
     numberOfCards: 10,
     includeResults: true);
 
@@ -109,7 +149,7 @@ RPActivityStep delayedRecall = RPDelayedRecallActivity(
 
 RPActivityStep visualArrayChange = RPVisualArrayChangeActivity(
     identifier: 'VisualArrayChange step ID',
-    lengthOfTest: 180,
+    lengthOfTest: 60,
     numberOfTests: 3,
     waitTime: 3,
     includeResults: false);
