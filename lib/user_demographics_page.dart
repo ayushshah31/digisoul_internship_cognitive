@@ -30,10 +30,10 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
     // TODO: implement initState
     super.initState();
     formattedDate = formatter.format(today);
-    time = today ;
+    time = today;
   }
 
-  void updateResTime(RPTaskResult getRes,DateTime end){
+  void updateResTime(RPTaskResult getRes, DateTime end) {
     setState(() {
       result = getRes;
       timeTaken = (end.difference(today)).toString();
@@ -41,7 +41,7 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
     });
   }
 
-  void updateTest(){
+  void updateTest() {
     setState(() {
       testNo++;
     });
@@ -54,15 +54,14 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
       child: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus?.unfocus();
           }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const Column(
+            Column(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(left: 60, right: 60, top: 40),
@@ -76,7 +75,7 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
             ),
             Column(
               children: <Widget>[
-                const Padding(
+                Padding(
                     padding: EdgeInsets.only(left: 25, bottom: 10, top: 20),
                     child: Row(children: <Widget>[
                       Text(
@@ -91,9 +90,7 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
                       onChanged: (text) {
                         name = text;
                       },
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter your name'),
+                      decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Enter your name'),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(left: 25, bottom: 10, top: 20),
@@ -104,7 +101,6 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
                         textAlign: TextAlign.left,
                       )
                     ])),
-
                 Padding(
                     padding: const EdgeInsets.only(left: 25, bottom: 10, top: 20),
                     child: Row(children: <Widget>[
@@ -141,32 +137,33 @@ class UserDemographicsPageState extends State<UserDemographicsPage> {
                   updateTest();
                   Navigator.of(context).push(MaterialPageRoute<dynamic>(
                       builder: (context) => SurveyPage(
-                        name: name,
-                        time: time,
-                        date: formattedDate,
-                        testNo: testNo,
-                        updateRes: updateResTime,
-                      )));
+                            name: name,
+                            time: time,
+                            date: formattedDate,
+                            testNo: testNo,
+                            updateRes: updateResTime,
+                          )));
                 },
               ),
             ),
-            if(showRes)
+            if (showRes)
               Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 40),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffC32C39),
-                  fixedSize: const Size(300, 60),
+                padding: const EdgeInsets.only(top: 0, bottom: 40),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffC32C39),
+                    fixedSize: const Size(300, 60),
+                  ),
+                  child: const Text(
+                    'Display Results',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DisplayResults(result: result!, testNo: testNo, timeTaken: timeTaken)));
+                  },
                 ),
-                child: const Text(
-                  'Display Results',
-                  style: TextStyle(fontSize: 18),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DisplayResults(result: result!,testNo: testNo,timeTaken: timeTaken)));
-                },
               ),
-            ),
           ],
         ),
       ),
