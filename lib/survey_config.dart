@@ -16,12 +16,15 @@ RPOrderedTask surveyTask = RPOrderedTask(
       q7,
       q8,
       q9,
+      instr,
       flanker,
       visualArrayChange,
       corsiBlockTapping,
       completionStep,
     ],
     closeAfterFinished: true);
+
+RPInstructionStep instr = RPInstructionStep(identifier: "Instruction",footnote: "Click next to begin",text: "You will now do a series of cognitive tasks", title: 'You will now do a series of cognitive tasks');
 
 RPCompletionStep completionStep = RPCompletionStep(identifier: 'completionID', title: 'Finished')
   ..text = 'Thank you for taking the tests';
@@ -43,7 +46,7 @@ RPQuestionStep q7Neg = RPQuestionStep(
 RPAnswerFormat answerFormat7Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
 
 RPQuestionStep q7Pos = RPQuestionStep(
-    identifier: "EMA Question 7 negative impact",
+    identifier: "EMA Question 7 positive impact",
     title: "How much of a positive impact did this routine event or situation have on you? ",
     answerFormat: answerFormat7Neg);
 RPAnswerFormat answerFormat7Pos = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
@@ -61,7 +64,7 @@ RPQuestionStep q8Neg = RPQuestionStep(
 RPAnswerFormat answerFormat8Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
 
 RPQuestionStep q8Pos = RPQuestionStep(
-    identifier: "EMA Question 8 negative impact",
+    identifier: "EMA Question 8 positive impact",
     title: "How much of a positive impact did this event or situation with others have on you?",
     answerFormat: answerFormat7Neg);
 RPAnswerFormat answerFormat8Pos = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
@@ -80,7 +83,7 @@ RPQuestionStep q9Neg = RPQuestionStep(
 RPAnswerFormat answerFormat9Neg = RPSliderAnswerFormat(minValue: 0, maxValue: 10, divisions: 10);
 
 RPQuestionStep q9Pos = RPQuestionStep(
-    identifier: "EMA Question 9 negative impact",
+    identifier: "EMA Question 9 positive impact",
     title:
         "How much of a positive impact did this event or situation with money or health have on you?",
     answerFormat: answerFormat7Neg);

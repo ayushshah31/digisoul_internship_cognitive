@@ -60,28 +60,28 @@ class SurveyPage extends StatelessWidget {
     print('RESULTS:');
     print(result);
     result.results.forEach((key, value) {
-      print(value);
-      print(value.runtimeType);
+      // print(value);
+      // print(value.runtimeType);
       try {
         value = value as RPActivityResult;
         print(' $key\t: ${value.results}');
       } catch (e) {
-        print(value.toJson());
-
-        // var res1 = value as RPStepResult;
-        // var entries = res1.results;
-        // List s = [];
-        // for(var i in entries.values.single){
-        //   s.add(i.text);
-        // }
-        // print(s);
-        // print(entries.values.single[0].text);
-        // print(' $key\t: ${res1.answerFormat.toJson()}');
-        // }
-        // print(s);
-        // print(entries.values.single[0].text);
-        // print(' $key\t: ${res1.answerFormat.toJson()}');
-      }
+        // print(value.toJson());
+        var res1 = value as RPStepResult;
+        // print(res1.results);
+        var entries = res1.results;
+        List s = [];
+        try {
+          for (var i in entries.values.single) {
+            s.add(i.text);
+          }
+        } catch(e){
+          for (var i in entries.values) {
+            s.add(i);
+          }
+        }
+        print(s);
+        }
     });
   }
 }

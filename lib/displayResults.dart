@@ -16,19 +16,28 @@ class _DisplayResultsState extends State<DisplayResults> {
 
   void getTests(){
     widget.result.results.forEach((key, value) {
+      // print(value);
+      // print(value.runtimeType);
       try {
         value = value as RPActivityResult;
-        res.add(Text(' $key\t: ${value.results}',style: TextStyle(fontSize: 16),));
-      } catch(e){
+        res.add(Text(' $key\t: ${value.results}'));
+        // print(' $key\t: ${value.results}');
+      } catch (e) {
+        // print(value.toJson());
         var res1 = value as RPStepResult;
+        // print(res1.results);
         var entries = res1.results;
         List s = [];
-        for(var i in entries.values.single){
-          s.add(i.text);
+        try {
+          for (var i in entries.values.single) {
+            s.add(i.text);
+          }
+        } catch(e){
+          for (var i in entries.values) {
+            s.add(i);
+          }
         }
-        res.add(Text(' $key\t: $s',style: TextStyle(fontSize: 16),));
-        // print(entries.values.single[0].text);
-        // print(' $key\t: ${res1.answerFormat.toJson()}');
+        res.add(Text(' $key\t: $s',style: const TextStyle(fontSize: 16),));
       }
     });
   }
@@ -43,7 +52,7 @@ class _DisplayResultsState extends State<DisplayResults> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.white,automaticallyImplyLeading: false,leading: BackButton(color: Colors.black),elevation: 0,),
+        appBar: AppBar(backgroundColor: Colors.white,automaticallyImplyLeading: false,leading: const BackButton(color: Colors.black),elevation: 0,),
         body: Padding(
           padding: const EdgeInsets.only(left:10,right:10),
           child: Column(
@@ -57,12 +66,12 @@ class _DisplayResultsState extends State<DisplayResults> {
                 ),
               ),
               const SizedBox(height: 15),
-              Text("Time Taken: ${widget.timeTaken}",style: TextStyle(fontSize: 16),),
-              SizedBox(height: 10),
-              Text("Test No: ${widget.testNo-1}",style: TextStyle(fontSize: 16),),
-              SizedBox(height: 10),
+              Text("Time Taken: ${widget.timeTaken}",style: const TextStyle(fontSize: 16),),
+              const SizedBox(height: 10),
+              Text("Test No: ${widget.testNo-1}",style: const TextStyle(fontSize: 16),),
+              const SizedBox(height: 10),
               SizedBox(
-                height: 400,
+                height: 250,
                 child: ListView.builder(
                   itemCount: res.length,
                     itemBuilder: (context, index){
